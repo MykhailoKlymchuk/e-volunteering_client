@@ -1,5 +1,6 @@
 import { api } from "./ServerApi.js"
 
+
 /*********************************************Organization****************************************************/ 
 /*
  * this function adds a new Organization
@@ -43,6 +44,27 @@ export async function getLocations() {
         return response.data
     } catch (error) {
         throw new Error("Error fetching organization locations")
+    }
+}
+
+
+export async function getOrganizationById(Id) {
+    try {
+        const result = await api.get(`/organizations/organization/${Id}`)
+        console.log(result.data)
+        return result.data
+    } catch (error) {
+        throw new Error(`Error fetching room ${error.message}`)
+    }
+}
+
+export async function updateOrganization(id, updatedData) {
+    try {
+        const response = await api.put(`/organizations/organization/${id}`, updatedData);
+        return response.data;
+    } catch (error) {
+        console.error('Error updating volunteer initiative:', error);
+        throw error;
     }
 }
 

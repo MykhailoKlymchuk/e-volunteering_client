@@ -93,6 +93,10 @@ body {
   color: #941919;
 }
 
+.yellow-icon {
+  color: #FFA500;
+}
+
 .parallax {
   background-image: url("/public/services4.jpg");
   background-attachment: fixed;

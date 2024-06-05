@@ -44,7 +44,7 @@ const AddOrganization = () => {
                 newOrganization.description)
 
             if (success !== undefined) {
-                setSuccessMessage("Your request to create a volunteer organization will be considered in the near future, expect a call and a message to the email address!")
+                setSuccessMessage("Ваш запит на створення волонтерської організації буде розглянуто найближчим часом, очікуйте дзвінка та повідомлення на електронну адресу!")
                 setNewOrganization({
                     photo: null,
                     name: "",
@@ -60,7 +60,7 @@ const AddOrganization = () => {
                 setErrorMessage("Error adding new organization")
             }
         } catch (error) {
-            setErrorMessage(error.message)
+            setErrorMessage(""+error.message)
         }
         setTimeout(() => {
             setSuccessMessage("")
@@ -73,7 +73,7 @@ const AddOrganization = () => {
             <section className="container mt-5 mb-5">
                 <div className="row justify-content-center">
                     <div className="col-md-8 col-lg-6">
-                        <h2 className="mt-5 mb-2">Add a New Organization</h2>
+                        <h2 className="mt-5 mb-2">Зареєструвати нову організацію</h2>
                         {successMessage && (
                             <div className="alert alert-success fade show"> {successMessage}</div>
                         )}

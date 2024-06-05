@@ -42,12 +42,13 @@ const VolunteerInitiative = () => {
     const totalPages = Math.ceil(filteredData.length / visPerPage)
 
     const renderVIs = () => {
-        const startIndex = (currentPage - 1) * visPerPage
-        const endIndex = startIndex + visPerPage
+        const startIndex = (currentPage - 1) * visPerPage;
+        const endIndex = startIndex + visPerPage;
         return filteredData
             .slice(startIndex, endIndex)
-            .map((vi) => <VICard key={vi.id} vi={vi}/>)
-    }
+            .map((vi, index) => <VICard key={vi.id} vi={vi} index={startIndex + index + 1} />);
+    };
+
 
     return (
         <Container>

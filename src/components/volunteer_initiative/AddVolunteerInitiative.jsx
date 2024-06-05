@@ -43,7 +43,7 @@ const AddVolunteerInitiative = () => {
                 newVolunteerInitiative.description)
 
             if (success !== undefined) {
-                setSuccessMessage("Request successfully submitted")
+                setSuccessMessage("Запит успішно створенно")
                 setNewVolunteerInitiative({
                     name: "",
                     volunteerInitiativeType: "",
@@ -107,7 +107,7 @@ const AddVolunteerInitiative = () => {
 
                             <div className="mb-3">
                                 <label htmlFor="requiredAmount" className="form-label">
-                                    Room Price
+                                    Необхідна сума
                                 </label>
                                 <input
                                     required

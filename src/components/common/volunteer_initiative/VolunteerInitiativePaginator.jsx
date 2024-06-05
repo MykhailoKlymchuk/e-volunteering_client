@@ -1,6 +1,6 @@
 import React from 'react'
 
-const VolunteerInitiativePaginator = (currentPage, totalPages, onPageChange) => {
+const VolunteerInitiativePaginator = ({ currentPage, totalPages, onPageChange }) => {
 	const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1)
 	return (
 		<nav aria-label="Page navigation">

@@ -22,7 +22,7 @@ const VolunteerInitiativeTypeSelector = ({ handleVolunteerInitiativeInputChange,
                                 handleVolunteerInitiativeInputChange(e)
                         }}
                         value={newVolunteerInitiative.volunteerInitiativeType}>
-						<option value="">Select a type</option>
+						<option value="">Виберіть тип</option>
 						{viTypes.map((type, index) => (
 							<option key={index} value={type}>
 								{type}

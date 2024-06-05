@@ -1,5 +1,6 @@
 import React, {useContext, useState} from "react"
 import {NavLink, Link} from "react-router-dom"
+import Logout from "../auth/Logout"
 
 
 const NavBar = () => {
@@ -45,22 +46,19 @@ const NavBar = () => {
                             </NavLink>
                         </li>
 
-
-                        <li className="nav-item">
-                            <NavLink className="nav-link" to={"/admin"}>
-                                Адміністратор
-                            </NavLink>
-                        </li>
+                        {isLoggedIn && userRole === "ROLE_ADMIN" && (
+                            <li className="nav-item">
+                                <NavLink className="nav-link" aria-current="page" to={"/admin"}>
+                                    Адміністратор
+                                </NavLink>
+                            </li>
+                        )}
                     </ul>
 
                     <ul className="d-flex navbar-nav">
                         <li className="nav-item">
-                            <NavLink className="nav-link" to={"/find-org"}>
-                                Find my organization
-                            </NavLink>
+                            <a className="nav-link" href="http://localhost:5174/" target="_blank">Зв'язатися з організацією</a>
                         </li>
-
-
                         <li className="nav-item dropdown">
                             <a
                                 className={`nav-link dropdown-toggle ${showAccount ? "show" : ""}`}
@@ -70,28 +68,21 @@ const NavBar = () => {
                                 aria-expanded="false"
                                 onClick={handleAccountClick}>
                                 {" "}
-                                Account
+                                Аккаунт
                             </a>
 
                             <ul
                                 className={`dropdown-menu ${showAccount ? "show" : ""}`}
                                 aria-labelledby="navbarDropdown">
-
-                                <li>
-                                    <Link className="dropdown-item" to={"/login"}>
-                                        My Account
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link className="dropdown-item" to={"/login"}>
-                                        Login
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link className="dropdown-item" to={"/login"}>
-                                        Logout
-                                    </Link>
-                                </li>
+                                {isLoggedIn ? (
+                                    <Logout/>
+                                ) : (
+                                    <li>
+                                        <Link className="dropdown-item" to={"/login"}>
+                                            Login
+                                        </Link>
+                                    </li>
+                                )}
                             </ul>
                         </li>
                     </ul>
@@ -100,5 +91,4 @@ const NavBar = () => {
         </nav>
     )
 }
-
 export default NavBar

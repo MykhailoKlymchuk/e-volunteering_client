@@ -3,9 +3,9 @@ import {Card, Col} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import {getAmountFromUrl} from "../server_api/VolunteerInitiativeApiFunctions.js";
 
-import { FaFireAlt } from "react-icons/fa";
+import {FaFireAlt} from "react-icons/fa";
 
-const VICard = ({vi}) => {
+const VICard = ({vi, index}) => {
     const [amount, setAmount] = useState(null);
 
     useEffect(() => {
@@ -22,17 +22,14 @@ const VICard = ({vi}) => {
         fetchAmount();
     }, [vi.jarUrlStats]);
 
-    // Отримайте поточну дату
-    const currentDate = new Date();
+    const red = index >= 1 && index <= 1;
+    const yellow = index >= 2 && index <= 4;
 
-// Припустимо, що vi.publicationDate має формат "YYYY-MM-DD"
-    const publicationDate = new Date("2024-05-15");
-
-// Розрахунок різниці в днях між поточною датою та датою публікації
-    const diffInDays = Math.floor((currentDate - publicationDate) / (1000 * 60 * 60 * 24));
-
-// Перевірка, чи дата публікації не пізніше 7 днів
-    const isRecentPublication = diffInDays <= 7;
+    <Card.Title className="hotel-color">
+        {red && <FaFireAlt className="ml-2 red-icon" />}
+        {yellow && <FaFireAlt className="ml-2 yellow-icon" />}
+        {vi.name}
+    </Card.Title>
 
     return (
         <Col key={vi.id} className="mb-4" xs={12}>
@@ -40,9 +37,11 @@ const VICard = ({vi}) => {
                 <Card.Body className="d-flex flex-wrap align-items-center">
                     <div className="flex-grow-1 ml-3 px-5">
                         <Card.Title className="hotel-color">
-                            {isRecentPublication && <FaFireAlt className="ml-2 red-icon" />}
+                            {red && <FaFireAlt className="ml-2 red-icon" />}
+                            {yellow && <FaFireAlt className="ml-2 yellow-icon" />}
                             {vi.name}
                         </Card.Title>
+
                         <Card.Title>{vi.volunteerInitiativeType}</Card.Title>
                         <Card.Title className="organization-price">
                             {amount !== null ? `${amount}/${vi.requiredAmount}` : 'Loading...'}

@@ -8,6 +8,7 @@ const LocationSelector = ({ handleOrganizationInputChange, newOrganization }) =>
     useEffect(() => {
         getLocations().then((data) => {
             setLocations(data)
+            console.log(data)
         })
     }, [])
 
@@ -23,7 +24,7 @@ const LocationSelector = ({ handleOrganizationInputChange, newOrganization }) =>
                                 handleOrganizationInputChange(e)
                         }}
                         value={newOrganization.location}>
-						<option value="">Select a location</option>
+						<option value="">Виберіть місце розташування</option>
 						{locations.map((location, index) => (
 							<option key={index} value={location}>
 								{location}

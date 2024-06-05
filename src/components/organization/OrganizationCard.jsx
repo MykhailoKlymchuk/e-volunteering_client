@@ -23,7 +23,7 @@ const OrganizationCard = ({organization}) => {
                     </div>
                     <div className="flex-shrink-0 mt-3">
                         <Link to={`/view-organization/${organization.id}`} className="btn btn-hotel btn-sm">
-                            view
+                            детальніше
                         </Link>
                     </div>
                 </Card.Body>

@@ -1,4 +1,4 @@
-import { api } from "./ServerApi.js"
+import {api} from "./ServerApi.js"
 
 /*********************************************VolunteerInitiative****************************************************/
 
@@ -6,7 +6,9 @@ import { api } from "./ServerApi.js"
  * this function adds a new VolunteerInitiative
  * @returns
  */
-export async function addVolunteerInitiative(    volunteerInitiativeType, requiredAmount,jarUrl,jarUrlStats, description) {
+export async function addVolunteerInitiative(
+    name, volunteerInitiativeType, requiredAmount, jarUrl, jarUrlStats, description
+) {
     const formData = new FormData()
     formData.append("name", name)
     formData.append("volunteerInitiativeType", volunteerInitiativeType)
@@ -29,6 +31,7 @@ export async function addVolunteerInitiative(    volunteerInitiativeType, requir
 export async function getVolunteerInitiatives() {
     try {
         const result = await api.get("/vis/all-volunteer-initiative")
+        console.log(result.data)
         return result.data
     } catch (error) {
         throw new Error("Error fetching volunteer-initiatives")
@@ -39,7 +42,7 @@ export async function getVolunteerInitiatives() {
 export async function getVolunteerInitiativeType() {
     try {
         const response = await api.get("/vis/vi/types")
-                console.log(response.data)
+        console.log(response.data)
         return response.data
     } catch (error) {
         throw new Error("Error fetching organization locations")
@@ -58,5 +61,36 @@ export async function getAmountFromUrl(url) {
         return data.amount;
     } catch (error) {
         console.error('There was a problem with the fetch operation:', error);
+    }
+}
+
+
+export async function closeVI(viId) {
+    try {
+        const result = await api.put(`/vis/vi/${viId}/close`)
+        return result.data
+    } catch (error) {
+        throw new Error(`Error cancelling  :${error.message}`)
+    }
+}
+
+export async function getVolunteerInitiativeById(Id) {
+    try {
+        const result = await api.get(`/vis/vi/${Id}`)
+        console.log(result.data)
+        return result.data
+    } catch (error) {
+        throw new Error(`Error fetching room ${error.message}`)
+    }
+}
+
+
+export async function updateVolunteerInitiative(id, updatedData) {
+    try {
+        const response = await api.put(`/vis/vi/${id}`, updatedData);
+        return response.data;
+    } catch (error) {
+        console.error('Error updating volunteer initiative:', error);
+        throw error;
     }
 }

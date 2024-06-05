@@ -6,9 +6,11 @@ const Admin = () => {
 		<section className="container mt-5">
 			<h2>Ласкаво просимо до панелі адміністратора</h2>
             <br />
-            <Link to={"/vis"}>vis</Link>
+            <Link to={"/vis"}>Ініціативи</Link>
             <br />
-            <Link to={"/orgs"}>orgs</Link>
+            <Link to={"/orgs"}>Організації</Link>
+			<br />
+			<Link to={"/vis-admin"}>Ініціативи адмін панель</Link>
 		</section>
 	)
 }
